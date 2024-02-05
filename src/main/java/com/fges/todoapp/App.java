@@ -1,6 +1,5 @@
 package com.fges.todoapp;
 
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -34,6 +33,7 @@ public class App {
         CommandLineParser parser = new DefaultParser();
         Options cliOptions = new Options();
         cliOptions.addRequiredOption("s", "source", true, "File containing the todos");
+        cliOptions.addOption("d", "done", false, "Mark the todo as done");
         CommandLine cmd;
 
         try {
@@ -58,14 +58,22 @@ public class App {
             String command = commandParser.getCommand();
             List<String> arguments = commandParser.getPositionalArgs();
 
-            return switch (command.toLowerCase()) {
-                case "insert" -> todoController.insertTodo(arguments.get(1));
-                case "list" -> todoController.listTodos();
-                default -> {
-                    System.err.println("Unknown command: " + command);
-                    yield 1;
+            if (cmd.hasOption("d")) {
+                if (command.equalsIgnoreCase("list")) {
+                    return todoController.listDoneTodos();
+                } else {
+                    return todoController.markTodoAsDone(arguments.get(0));
                 }
-            };
+            } else {
+                return switch (command.toLowerCase()) {
+                    case "insert" -> todoController.insertTodo(arguments.get(1));
+                    case "list" -> todoController.listTodos();
+                    default -> {
+                        System.err.println("Unknown command: " + command);
+                        yield 1;
+                    }
+                };
+            }
         } catch (Exception e) {
             System.err.println("An error occurred: " + e.getMessage());
             e.printStackTrace();

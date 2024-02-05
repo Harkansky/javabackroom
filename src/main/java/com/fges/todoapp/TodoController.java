@@ -22,4 +22,21 @@ public class TodoController {
         todos.forEach(todo -> System.out.println("- " + todo));
         return 0;
     }
+
+    public int listDoneTodos() throws IOException {
+        List<TodoItem> todos = storage.loadTodos();
+        todos.stream()
+                .filter(TodoItem::isDone)
+                .forEach(todo -> System.out.println("- " + todo));
+        return 0;
+    }
+
+    public int markTodoAsDone(String name) throws IOException {
+        List<TodoItem> todos = storage.loadTodos();
+        todos.stream()
+                .filter(todo -> todo.getName().equals(name))
+                .forEach(TodoItem::markAsDone);
+        storage.saveTodos(todos);
+        return 0;
+    }
 }
