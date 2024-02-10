@@ -1,15 +1,30 @@
 package com.fges.todoapp;
 
 public class TodoItem {
-    private final String name;
 
-    public TodoItem(String name) {
+    public TodoItem() {}
+    private String name;
+    private boolean done;
+
+    public TodoItem(String name, boolean done) {
+        this.name = name;
+        this.done = done;
+    }
+
+    public String getName() {
+        return "" + name;
+    }
+
+    public void setName(String name) {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return name;
+    public boolean isDone() {
+        return done;
     }
-}
 
+    public void setDone(boolean done) {
+        this.done = done;
+    }
+
+}
