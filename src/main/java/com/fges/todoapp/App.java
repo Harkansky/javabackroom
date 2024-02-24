@@ -61,6 +61,20 @@ public class App {
 
         }
 
+        if (command.equals("migrate")) {
+            if (fileName.endsWith(".csv")) {
+                todoController = new CsvTodoController();
+            } else if (fileName.endsWith(".json")) {
+                todoController = new JsonTodoController();
+            } else {
+                System.err.println("Unsupported file format");
+                return 1;
+            }
+
+            String newFileName = cmd.getOptionValue("o");
+            todoController.migrate(fileName, newFileName);
+        }
+
         // System.err.println("Done.");
         return 0;
     }

@@ -6,6 +6,7 @@ public class CommandParser {
         Options cliOptions = new Options();
         cliOptions.addRequiredOption("s", "source", true, "File containing the todos");
         cliOptions.addOption("d","done",false, "Marks task as done");
+        cliOptions.addOption("o", "output", true, "Output file");
 
         CommandLineParser parser = new DefaultParser();
         return parser.parse(cliOptions, args);

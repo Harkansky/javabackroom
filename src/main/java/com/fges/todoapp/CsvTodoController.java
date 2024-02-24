@@ -21,4 +21,10 @@ public class CsvTodoController implements TodoController {
             .map(parts -> (parts[1].equals("true") ? "- Done: " : "- ") + parts[0])
             .forEach(System.out::print);
     }
+
+    @Override
+    public void migrate(String from, String to) throws IOException {
+        String content = StorageController.readFileContent(from);
+        StorageController.writeToFile(to, content);
+    }
 }

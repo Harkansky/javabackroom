@@ -52,4 +52,10 @@ public class JsonTodoController implements TodoController {
             });
         }
     }
+
+    @Override
+    public void migrate(String from, String to) throws IOException {
+        String fileContent = StorageController.readFileContent(from);
+        StorageController.writeToFile(to, fileContent);
+    }
 }

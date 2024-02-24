@@ -74,3 +74,33 @@ The java documentation was not very clear and I had to look for other resources 
 ### What did I need to change
 
 I had to make modifications to the `TodoController` and `TodoItem` classes to add the new option.
+
+---
+
+## TP3
+
+### What I did and why
+
+New feature : migrate the file storage to another file storage.
+For this, I added a new option called output (-o for short) and I implemented a new method called migrate in the StorageController class.
+
+### What helped me and why
+
+I took example from the `done` flag to implement the `output` flag.
+
+### What I found difficult
+
+I started to spend a lot of time on this project that I don't find very interesting, so I got angry and decided to scratch everything to go for the laziest solution.
+I do not have all the necessary time, energy and interest to spend on this project.
+I have other classes and projects, I have a job, I have family, friends and responsibilities, I still have to find free time and I don't like java that much.
+3 hours a week is the best I can give.
+It breaks my heart because I am an absolute cat lover and Ilia is very cute, but I have to make choices and I have to prioritize.
+
+### What did not help me
+
+The entire script of the Bee Movie.
+
+### What did I need to change
+
+Nothing, I just added stuff.
+
